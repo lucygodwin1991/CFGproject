@@ -21,7 +21,7 @@ def signup ():
 	print form_data['name']
 	print form_data['email']
 	return "ALL OK"
-
+render_template
 app.run()
 
 # ------------ FourSquare API ------------
@@ -39,9 +39,10 @@ print "The weather in {city} is {description}".format(city=data['name'],descript
 
 
 https://api.foursquare.com/v2/venues/search?ll=51.504557,-0.017334
-&query=bars&restaurants&hotels&shops=browse&checkin
+&query=bars&restaurants&hotels=browse
 &client_id=0XFBHJXOKIQBB3FZSJJEGJFHS0WOJI5ZV3ZFDCBCWC2AVLH2
 &client_secret=2R0RBMTKV3LTRIPR1INR4LFQ2BNPL4FP4GG4AS2F1C4N4ZIO
-&v=20161024
+&v=20161024&limit=5&rating 
+
 hi
 
