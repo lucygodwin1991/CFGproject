@@ -1,48 +1,35 @@
-# ------------ Flask ------------
+# ------- FOURSQUARE API KEY ------- 
 
-from flask import request 
-from flask import Flask
-from flask import render_template
-app = Flask(__name__)
-app.debug=True
+"""
+Client ID: 0XFBHJXOKIQBB3FZSJJEGJFHS0WOJI5ZV3ZFDCBCWC2AVLH2
+Client SECRET: 2R0RBMTKV3LTRIPR1INR4LFQ2BNPL4FP4GG4AS2F1C4N4ZIO
+"""
 
-@app.route("/")
-def hello():
-    return render_template("hello.html")
-
-
-@app.route("/<name>/hello/goodbye") 
-def hello_someone(name):
-	return "Hello {0}!".format(name.title())
-
-@app.route("/signup", methods=['POST'])
-def signup ():
-	form_data = request.form
-	print form_data['name']
-	print form_data['email']
-	return "ALL OK"
-render_template
-app.run()
-
-# ------------ FourSquare API ------------
-
-import requests
-
-foursquare = raw_input ('Find the best places to eat, drink, shop, or visit in any city in the world.')
-
-req = requests.get("http://api.openweathermap.org/data/2.5/weather?q={city_name}&appid=3ab047edc5cab272c4ab34832062c44a".format(city_name=city))
-
-data = req.json()
-
-print "The weather in {city} is {description}".format(city=data['name'],description=data['weather'][0]['description'])
-
-
+# ------- Query URL ------- 
 
 https://api.foursquare.com/v2/venues/search?ll=51.504557,-0.017334
-&query=bars&restaurants&hotels=browse
+&query=bars=browse
 &client_id=0XFBHJXOKIQBB3FZSJJEGJFHS0WOJI5ZV3ZFDCBCWC2AVLH2
 &client_secret=2R0RBMTKV3LTRIPR1INR4LFQ2BNPL4FP4GG4AS2F1C4N4ZIO
 &v=20161024&limit=5&rating 
 
-hi
+https://api.foursquare.com/v2/venues/search?ll=51.504557,-0.017334%20
+&query=bars=checkin%20
+&client_id=0XFBHJXOKIQBB3FZSJJEGJFHS0WOJI5ZV3ZFDCBCWC2AVLH2%20
+&client_secret=2R0RBMTKV3LTRIPR1INR4LFQ2BNPL4FP4GG4AS2F1C4N4ZIO%20
+&v=20161024&limit=5
+
+# ------- CODE ------- 
+
+import urllib2
+import json
+
+url = ('https://api.foursquare.com/v2/venues/search?ll=51.504557,-0.017334%20&query=bars=checkin%20&client_id=0XFBHJXOKIQBB3FZSJJEGJFHS0WOJI5ZV3ZFDCBCWC2AVLH2%20&client_secret=2R0RBMTKV3LTRIPR1INR4LFQ2BNPL4FP4GG4AS2F1C4N4ZIO%20&v=20161024&limit=5')
+json_obj = urllib2.urlopen(url)
+
+data = json.load(json_obj)
+
+print data['response']
+for item in data['response']
+print item['name']
 
